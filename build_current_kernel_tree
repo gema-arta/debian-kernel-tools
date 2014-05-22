@@ -1,0 +1,14 @@
+#!/bin/bash
+
+export SUFFIX="shk-custom"
+
+if [ ! -e Kconfig ]; then
+  echo "This script must be run from instead a git tree or unpacked candidate tarball"
+fi
+
+cp -f /boot/config-`uname -r` .config
+yes '' | make oldconfig
+make clean
+make -j `getconf _NPROCESSORS_ONLN` deb-pkg LOCALVERSION=-$SUFFIX
+
+# TODO: support signing your shiny new kernel
