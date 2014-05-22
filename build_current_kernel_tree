@@ -3,7 +3,7 @@
 export SUFFIX="shk-custom"
 
 if [ ! -e Kconfig ]; then
-  echo "This script must be run from instead a git tree or unpacked candidate tarball"
+  echo "This script must be run from inside a git tree or unpacked candidate tarball"
 fi
 
 cp -f /boot/config-`uname -r` .config
